@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>Formulario Login</h1>
+    <form action=""></form>
 </body>
 </html>
