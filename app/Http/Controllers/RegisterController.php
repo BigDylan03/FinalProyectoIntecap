@@ -26,6 +26,6 @@ class RegisterController extends Controller
         Sender::create($validated);
 
         // 3️⃣ Redirigir o mostrar mensaje de éxito
-        return redirect()->back()->with('success', 'Usuario registrado correctamente.');
+        return redirect()->intended(route('register'));
     }
 }
