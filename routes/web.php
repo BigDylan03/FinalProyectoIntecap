@@ -14,8 +14,4 @@ Route::post('/', [RegisterController::class, 'store'])->name('welcome.store');
 
 
 
-Route::get('/login', [LoginController::class, 'index'])->name('login.post');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/menu', [LoginController::class, 'logados'])->name('menu');
-
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login');

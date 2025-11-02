@@ -19,10 +19,6 @@
         <div class="opcion" id="op3">
             <a href="">Eliminar mi cuenta</a>
         </div>
-
-        
-        <a href="{{ route('login') }}">Inicio</a>
-            <a href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
 </body>
 </html>
