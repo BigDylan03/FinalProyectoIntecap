@@ -1,0 +1,49 @@
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #fafafa;
+    color: #222;
+    padding: 60px 7vw 40px;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin: 0 0 .2rem;
+    color: #1e3a2e;
+    letter-spacing: -.3px;
+}
+
+h1 + h1 {               /* segundo h1 */
+    margin-bottom: 2.5rem;
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* ===== LISTA ===== */
+.opciones {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.opcion {
+    background: #ffffff;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.opcion:nth-child(even) {
+    background: #f7fff7;
+}
+
+.opcion a {
+    display: block;
+    padding: 14px 4px;
+    font-size: .95rem;
+    color: #2d6e3e;
+    transition: color .25s, background .25s;
+}
+
+.opcion a:hover {
+    background: #f4c542;
+    color: #1e3a2e;
+}

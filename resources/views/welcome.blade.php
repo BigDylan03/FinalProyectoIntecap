@@ -20,6 +20,22 @@
 </head>
 
 <body>
+    <nav class="navbar-top">
+    <div class="nav-content">
+        <a class="nav-brand" href="{{ url('/') }}">Verdes</a>
+        <div class="nav-links">
+            <a href="{{route ('menu.send')}}">Enviar dinero</a>
+            @auth
+                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}">Login</a>
+            @endauth
+        </div>
+    </div>
+</nav>
 <div class="container">
 
     <!-- HERO -->
@@ -96,7 +112,7 @@
 
     <!-- FORMULARIO (oculto hasta hacer clic) -->
     <section id="registro" class="section-card">
-        <form action="{{route('welcome.store')}}" method="post">
+        <form action="{{route('welcome')}}" method="post">
             @csrf
             <h2 class="text-center mb-4">Regístrate ahora</h2>
 
@@ -135,12 +151,20 @@
                 <div class="input-group mb-3"><span class="input-group-text">Teléfono</span><input type="text" class="form-control" name="phone" required></div>
                 <div class="input-group mb-3"><span class="input-group-text">Correo</span><input type="email" class="form-control" name="email" required></div>
                 <div class="mb-3"><label class="form-label">Contraseña</label><input type="password" class="form-control" name="password" required></div>
+                <div class="mb-3"><label class="form-label">Confirmar Contraseña</label><input type="password" class="form-control" name="password_confirmation" required></div>
             </fieldset>
 
             <div class="text-center"><button type="submit" class="btn-verde">Registrar</button></div>
         </form>
     </section>
 
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     <!-- LOGIN -->
     <section class="text-center mb-5">
         <h5 class="fw-light mb-3">¿Ya tienes un perfil?</h5>

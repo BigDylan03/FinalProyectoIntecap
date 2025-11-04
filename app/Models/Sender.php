@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Sender extends Model
+use HasFactory, Notifiable;
+
+class Sender extends Authenticatable
 {
     protected $table = 'senders';
     protected $primaryKey = 'id_sender';

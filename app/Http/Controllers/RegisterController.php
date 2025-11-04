@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Sender;
 use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -18,14 +19,15 @@ class RegisterController extends Controller
             'phone' => 'required|string|max:20',
             'email' => 'required|email|unique:senders,email',
             'id_state' => 'required|exists:states,id_state',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
 
-        Sender::create($validated);
+        $sender = Sender::create($validated);
 
-        // 3️⃣ Redirigir o mostrar mensaje de éxito
+        Auth::login($sender);
+
         return redirect()->intended(route('register'));
     }
 }
