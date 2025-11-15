@@ -65,4 +65,9 @@ class LoginController extends Controller
         return view('menu.delete');
     }
 
+    public function showReceiverForm()
+    {
+        return view('menu.receiver');
+    }
+
 }

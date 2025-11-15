@@ -1,0 +1,315 @@
+/* styleLogin.css */
+
+/* Variables de color */
+:root {
+    --verde-primary: #22c55e;
+    --verde-dark: #16a34a;
+    --verde-light: #86efac;
+    --amarillo-primary: #ffd60a;
+    --amarillo-dark: #ffc300;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --danger: #ef4444;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background animado */
+.generalLogin {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--verde-primary) 0%, var(--verde-dark) 50%, var(--amarillo-dark) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+    padding: 2rem 1rem;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Círculos decorativos de fondo */
+.generalLogin::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 20s ease-in-out infinite;
+}
+
+.generalLogin::after {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+}
+
+/* Container del formulario */
+.container {
+    max-width: 450px;
+    width: 100%;
+    background: var(--white);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 10;
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo/Título con gradiente */
+.container h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--verde-primary) 0%, var(--verde-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.container h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--amarillo-primary), var(--amarillo-dark));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+/* Labels */
+.form-label {
+    font-weight: 600;
+    color: var(--gray-800);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs */
+.form-control {
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: var(--gray-50);
+}
+
+.form-control:focus {
+    border-color: var(--verde-primary);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+    background: var(--white);
+    outline: none;
+}
+
+.form-control:hover {
+    border-color: var(--gray-600);
+}
+
+/* Form text helper */
+.form-text {
+    color: var(--gray-600);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* Checkbox */
+.form-check {
+    padding-left: 1.75rem;
+}
+
+.form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-check-input:checked {
+    background-color: var(--verde-primary);
+    border-color: var(--verde-primary);
+}
+
+.form-check-input:focus {
+    border-color: var(--verde-primary);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+.form-check-label {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Botón de submit */
+.btn-success {
+    width: 100%;
+    background: linear-gradient(135deg, var(--verde-primary) 0%, var(--verde-dark) 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    margin-top: 0.5rem;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+    background: linear-gradient(135deg, var(--verde-dark) 0%, var(--verde-primary) 100%);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+}
+
+/* Mensajes de error */
+.text-danger {
+    color: var(--danger);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+ul li {
+    color: var(--danger);
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+}
+
+ul li::before {
+    content: '⚠ ';
+    margin-right: 0.5rem;
+}
+
+/* Espaciado de grupos */
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .container {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+
+    .container h2 {
+        font-size: 1.75rem;
+    }
+
+    .generalLogin::before,
+    .generalLogin::after {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+/* Efecto hover en el formulario */
+.container:hover {
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Input con icono (opcional para futuras mejoras) */
+.input-group-text {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+}
+
+.input-group .form-control {
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+}
+
+/* Link adicional (si quieres agregar "¿Olvidaste tu contraseña?") */
+a {
+    color: var(--verde-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--verde-dark);
+    text-decoration: underline;
+}

@@ -8,7 +8,9 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet">
     <!-- Estilos extra -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <title>Verdes</title>
@@ -24,13 +26,15 @@
     <div class="nav-content">
         <a class="nav-brand" href="{{ url('/') }}">Verdes</a>
         <div class="nav-links">
-            <a href="{{route ('menu.send')}}">Enviar dinero</a>
             @auth
+            <a href="{{route ('menu.menu')}}">Menu</a>
+            <a href="{{route ('transactions.index')}}">Mis Transacciones</a>
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf
                     <button type="submit" class="btn-logout">Logout</button>
                 </form>
             @else
+                <a href="{{route ('register')}}">Registrar</a>
                 <a href="{{ route('login') }}">Login</a>
             @endauth
         </div>
@@ -110,63 +114,9 @@
         </div>
     </section>
 
-    <!-- FORMULARIO (oculto hasta hacer clic) -->
-    <section id="registro" class="section-card">
-        <form action="{{route('welcome')}}" method="post">
-            @csrf
-            <h2 class="text-center mb-4">Regístrate ahora</h2>
-
-            <fieldset class="mb-4">
-                <legend class="fw-semibold mb-3" style="color:var(--verde-money)">Nombres</legend>
-                <div class="row g-3">
-                    <div class="col"><input type="text" class="form-control" placeholder="Primer Nombre" name="first_name" required></div>
-                    <div class="col"><input type="text" class="form-control" placeholder="Segundo Nombre" name="middle_name"></div>
-                </div>
-            </fieldset>
-
-            <fieldset class="mb-4">
-                <legend class="fw-semibold mb-3" style="color:var(--verde-money)">Apellidos</legend>
-                <div class="row g-3">
-                    <div class="col"><input type="text" class="form-control" placeholder="Primer apellido" name="paternal_name" required></div>
-                    <div class="col"><input type="text" class="form-control" placeholder="Segundo Apellido" name="maternal_name"></div>
-                </div>
-            </fieldset>
-
-            <fieldset class="mb-4">
-                <legend class="fw-semibold mb-3" style="color:var(--verde-money)">Departamento</legend>
-                <div class="row g-3">
-                    <select name="id_state" id="id_state" required>
-                        <optgroup>
-                            @foreach ($states as $state)
-                                <option value="{{ $state->id_state }}">{{ $state -> name}}</option>
-                            @endforeach
-                        </optgroup>
-                    </select>
-                    
-                </div>
-            </fieldset>
-
-            <fieldset class="mb-4">
-                <legend class="fw-semibold mb-3" style="color:var(--verde-money)">Datos de Contacto</legend>
-                <div class="input-group mb-3"><span class="input-group-text">Teléfono</span><input type="text" class="form-control" name="phone" required></div>
-                <div class="input-group mb-3"><span class="input-group-text">Correo</span><input type="email" class="form-control" name="email" required></div>
-                <div class="mb-3"><label class="form-label">Contraseña</label><input type="password" class="form-control" name="password" required></div>
-                <div class="mb-3"><label class="form-label">Confirmar Contraseña</label><input type="password" class="form-control" name="password_confirmation" required></div>
-            </fieldset>
-
-            <div class="text-center"><button type="submit" class="btn-verde">Registrar</button></div>
-        </form>
-    </section>
-
-    @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+   
     <!-- LOGIN -->
-    <section class="text-center mb-5">
+    <section class="text-center mb-5" id="registro">
         <h5 class="fw-light mb-3">¿Ya tienes un perfil?</h5>
         <a href="{{route('login')}}" class="btn btn-outline-success rounded-pill px-4">Iniciar Sesión</a>
     </section>

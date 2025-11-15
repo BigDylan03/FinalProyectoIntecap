@@ -6,11 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+
+    public static function generateMtcn()
+    {
+        do {
+            $mtcn = 
+                rand(100, 999) . '-' . 
+                rand(100, 999) . '-' . 
+                rand(1000, 9999);
+        } while (self::where('mtcn', $mtcn)->exists());
+
+        return $mtcn;
+    }
+    
     protected $primaryKey = 'id_transaction';
     protected $fillable = [
-        'id_sender', 'id_receiver', 'sending_account', 'paying_account',
-        'origination_state_id', 'destination_state_id',
-        'send_amount', 'charge', 'status', 'date'
+        'id_sender', 
+        'id_receiver', 
+        'sending_account', 
+        'paying_account',
+        'origination_state_id', 
+        'destination_state_id',
+        'send_amount', 
+        'charge', 
+        'status', 
+        'date',
+        'mtcn'
     ];
 
     // Relaciones
@@ -26,12 +47,12 @@ class Transaction extends Model
 
     public function sendingAccount()
     {
-        return $this->belongsTo(Account::class, 'sending_account');
+        return $this->belongsTo(Account::class, 'sending_account', 'id_account');
     }
 
     public function payingAccount()
     {
-        return $this->belongsTo(Account::class, 'paying_account');
+        return $this->belongsTo(Account::class, 'paying_account', 'id_account');
     }
 
     public function originationState()
@@ -44,3 +65,4 @@ class Transaction extends Model
         return $this->belongsTo(State::class, 'destination_state_id');
     }
 }
+ 

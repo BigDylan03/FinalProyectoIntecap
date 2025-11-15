@@ -10,6 +10,6 @@ class StateController extends Controller
     public function index()
     {
         $states = State::all();
-        return view('welcome', compact('states'));
+        return view('register', compact('states'));
     }
 }

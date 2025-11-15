@@ -8,7 +8,11 @@ class Receiver extends Model
 {
     protected $primaryKey = 'id_receiver';
     protected $fillable = [
-        'first_name', 'middle_name', 'paternal_name', 'maternal_name',
+        'id_sender',
+        'first_name',
+        'middle_name',
+        'paternal_name',
+        'maternal_name',
         'id_state'
     ];
 
@@ -16,6 +20,11 @@ class Receiver extends Model
     public function state()
     {
         return $this->belongsTo(State::class, 'id_state');
+    }
+
+    public function sender()
+    {
+        return $this->belongsTo(Sender::class, 'id_sender');
     }
 
     // Un beneficiario puede recibir muchas transacciones

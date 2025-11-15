@@ -33,5 +33,11 @@ class Sender extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'id_sender');
     }
+
+    public function receivers()
+    {
+        return $this->hasMany(Receiver::class, 'id_sender');
+    }
+
 }
 
